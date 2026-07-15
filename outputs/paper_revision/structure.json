@@ -1,0 +1,1039 @@
+{
+  "paragraph_count": 40,
+  "table_count": 2,
+  "inline_shape_count": 3,
+  "section_count": 1,
+  "paragraphs": [
+    {
+      "index": 0,
+      "style": "Heading 1",
+      "text": "第二章 基于混合检索与证据融合的工业时序异常诊断方法",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "第二章 基于混合检索与证据融合的工业时序异常诊断方法",
+          "bold": true,
+          "italic": null,
+          "size_pt": 16.0,
+          "font": "Times New Roman",
+          "east_asia": "黑体"
+        }
+      ]
+    },
+    {
+      "index": 1,
+      "style": "First Paragraph",
+      "text": "工业水处理过程涉及大量异构传感器与复杂的工程耦合关系，单一数据源或单一检索方式难以支撑可解释的根因定位。本章在前文 Relation-EVGAT 异常检测与根因候选排序的基础上，重点阐述基于 DeepSeek 的向量与关系型数据库混合检索机制，以及多源异构知识的证据融合与 Agent 编排策略。整体架构如图 2-1 所示，自下而上包含多源知识库构建、混合检索引擎与智能体决策输出三个层次。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "工业水处理过程涉及大量异构传感器与复杂的工程耦合关系，单一数据源或单一检索方式难以支撑可解释的根因定位。本章在前文 Relation-EVGAT 异常检测与根因候选排序的基础上，重点阐述基于 DeepSeek 的向量与关系型数据库混合检索机制，以及多源异构知识的证据融合与 Agent 编排策略。整体架构如图 2-1 所示，自下而上包含多源知识库构建、混合检索引擎与智能体决策输出三个层次。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "style": "Heading 2",
+      "text": "2.1 多源异构知识库构建",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "2.1 多源异构知识库构建",
+          "bold": true,
+          "italic": null,
+          "size_pt": 14.0,
+          "font": "Times New Roman",
+          "east_asia": "黑体"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": null,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 4,
+      "style": "Body Text",
+      "text": "",
+      "has_image": true,
+      "alignment": null,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": "黑体"
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "style": "First Paragraph",
+      "text": "工业现场积累的运维知识分散于多种格式的文档与数据表中。本系统面向 CSV 时序记录、Excel 工艺参数表、PDF 设备手册与 DOC 历史维修报告四类数据源，构建统一知识底座。其中，CSV 与 Excel 主要包含结构化字段（传感器编号、阈值、工艺参数、历史异常记录），经 Kimi 的数据解析与 SQL 生成能力提取后存入关系型数据库，以支持精确字段匹配与条件查询；PDF 与 DOC 包含非结构化的故障现象描述、处置经验与操作规程，经 ErnieBot 的 OCR 识别与文本提取后，进行文本切片与语义编码，最终由 DeepSeek text-embedding-v4 模型向量化后存入向量数据库。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "工业现场积累的运维知识分散于多种格式的文档与数据表中。本系统面向 CSV 时序记录、Excel 工艺参数表、PDF 设备手册与 DOC 历史维修报告四类数据源，构建统一知识底座。其中，CSV 与 Excel 主要包含结构化字段（传感器编号、阈值、工艺参数、历史异常记录），经 Kimi 的数据解析与 SQL 生成能力提取后存入关系型数据库，以支持精确字段匹配与条件查询；PDF 与 DOC 包含非结构化的故障现象描述、处置经验与操作规程，经 ErnieBot 的 OCR 识别与文本提取后，进行文本切片与语义编码，最终由 DeepSeek ",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "text-embedding-v4",
+          "bold": null,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Consolas",
+          "east_asia": "等线"
+        },
+        {
+          "text": " 模型向量化后存入向量数据库。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "style": "Body Text",
+      "text": "通过上述分流入库策略，语义型知识（故障案例、操作手册段落）与事实型知识（规则阈值、设备参数）在物理存储层面得以分离，为后续“双路检索+融合重排”的混合检索方案奠定基础。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "通过上述分流入库策略，语义型知识（故障案例、操作手册段落）与事实型知识（规则阈值、设备参数）在物理存储层面得以分离，为后续“双路检索+融合重排”的混合检索方案奠定基础。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "style": "Heading 2",
+      "text": "2.2 基于 DeepSeek 的双路混合检索",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "2.2 基于 DeepSeek 的双路混合检索",
+          "bold": true,
+          "italic": null,
+          "size_pt": 14.0,
+          "font": "Times New Roman",
+          "east_asia": "黑体"
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "style": "First Paragraph",
+      "text": "当 Relation-EVGAT 检测到异常事件并输出异常节点集合、退化边集合及 Top-K 根因候选后，系统以当前异常事件的证据描述作为查询条件，触发双路并行检索。",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "当 Relation-EVGAT 检测到异常事件并输出异常节点集合、退化边集合及 Top-K 根因候选后，系统以当前异常事件的证据描述作为查询条件，触发双路并行检索。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "style": "Body Text",
+      "text": "向量检索（语义召回）。将异常事件的关键描述（异常传感器 ID、时序偏差方向、退化边关系）拼接为自然语言查询 ，由 DeepSeek text-embedding-v4 模型编码为稠密向量 。随后在向量数据库中执行最近邻搜索：",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "向量检索（语义召回）",
+          "bold": true,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "。将异常事件的关键描述（异常传感器 ID、时序偏差方向、退化边关系）拼接为自然语言查询 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "，由 DeepSeek ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "text-embedding-v4",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": " 模型编码为稠密向量 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "。随后在向量数据库中执行最近邻搜索：",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 11,
+      "style": "First Paragraph",
+      "text": "其中  为向量库中的所有文档片段， 为预存片段向量。该路检索召回与当前异常语义相近的历史故障处置案例与手册相关章节，为根因推理提供经验参考。",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "其中 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": " 为向量库中的所有文档片段，",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": " 为预存片段向量。该路检索召回与当前异常语义相近的历史故障处置案例与手册相关章节，为根因推理提供经验参考。",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "style": "Body Text",
+      "text": "关系型检索（精确匹配）。与此同时，系统提取异常事件中的结构化字段（异常传感器编号、超限幅值、设备类型标签），构造 SQL 查询条件，在关系型数据库中精确匹配对应工艺规则、标准阈值范围及历史同类型事件的处置流程。该路检索结果具有高权威性与确定性，弥补了向量检索“软匹配”可能带来的语义漂移风险。",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "关系型检索（精确匹配）",
+          "bold": true,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "。与此同时，系统提取异常事件中的结构化字段（异常传感器编号、超限幅值、设备类型标签），构造 SQL 查询条件，在关系型数据库中精确匹配对应工艺规则、标准阈值范围及历史同类型事件的处置流程。该路检索结果具有高权威性与确定性，弥补了向量检索“软匹配”可能带来的语义漂移风险。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "style": "Body Text",
+      "text": "融合重排策略。两路检索结果经融合层合并，按置信度分数加权去重。设向量检索召回集合为 ，关系检索召回集合为 ，融合后的知识证据包  表示为：",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "融合重排策略",
+          "bold": true,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "。两路检索结果经融合层合并，按置信度分数加权去重。设向量检索召回集合为 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "，关系检索召回集合为 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "，融合后的知识证据包 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": " 表示为：",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 15,
+      "style": "First Paragraph",
+      "text": "其中  为调节向量召回与精确匹配权重的超参数（本实验取 ，偏重向量召回的语义覆盖）。最终将  组织为结构化字段与自然语言摘要并存的知识证据包，输入后续推理环节。",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "其中 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": " 为调节向量召回与精确匹配权重的超参数（本实验取 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "，偏重向量召回的语义覆盖）。最终将 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": " 组织为结构化字段与自然语言摘要并存的知识证据包，输入后续推理环节。",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "style": "Heading 2",
+      "text": "2.3 基于智能体的证据融合与推理编排",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "2.3 基于智能体的证据融合与推理编排",
+          "bold": true,
+          "italic": null,
+          "size_pt": 14.0,
+          "font": "Times New Roman",
+          "east_asia": "黑体"
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "style": "First Paragraph",
+      "text": "混合检索输出的知识证据包需与 Relation-EVGAT 提供的 5 类异常证据（异常分数、阈值、Top-K 根因候选、关系退化边、传播路径）以及当前工况上下文进行统一融合，这一过程由 Agent 进行流程编排。Agent 不是单次 LLM 调用，而是按照“异常现象归纳 → 混合检索触发 → 多源证据汇聚 → 根因判别与证据链组织 → 诊断报告生成”的固定工作流进行任务调度。在多源证据汇聚阶段，Agent 将异构数据统一转换为大语言模型可理解的 JSON 结构，包含 conclusion、root_causes、degraded_edges、recommendations、citations 及 report_text 六个规定字段。最终，系统同时输出标准化 JSON 诊断结果与完整自然语言运维报告，兼顾机器可读与人工可读需求。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "混合检索输出的知识证据包需与 Relation-EVGAT 提供的 5 类异常证据（异常分数、阈值、Top-K 根因候选、关系退化边、传播路径）以及当前工况上下文进行统一融合，这一过程由 Agent 进行流程编排。Agent 不是单次 LLM 调用，而是按照“异常现象归纳 → 混合检索触发 → 多源证据汇聚 → 根因判别与证据链组织 → 诊断报告生成”的固定工作流进行任务调度。在多源证据汇聚阶段，Agent 将异构数据统一转换为大语言模型可理解的 JSON 结构，包含 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "conclusion",
+          "bold": null,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Consolas",
+          "east_asia": "等线"
+        },
+        {
+          "text": "、",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "root_causes",
+          "bold": null,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Consolas",
+          "east_asia": "等线"
+        },
+        {
+          "text": "、",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "degraded_edges",
+          "bold": null,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Consolas",
+          "east_asia": "等线"
+        },
+        {
+          "text": "、",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "recommendations",
+          "bold": null,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Consolas",
+          "east_asia": "等线"
+        },
+        {
+          "text": "、",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "citations",
+          "bold": null,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Consolas",
+          "east_asia": "等线"
+        },
+        {
+          "text": " 及 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        },
+        {
+          "text": "report_text",
+          "bold": null,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Consolas",
+          "east_asia": "等线"
+        },
+        {
+          "text": " 六个规定字段。最终，系统同时输出标准化 JSON 诊断结果与完整自然语言运维报告，兼顾机器可读与人工可读需求。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "style": "Heading 2",
+      "text": "2.4 对比实验与结果分析",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "2.4 对比实验与结果分析",
+          "bold": true,
+          "italic": null,
+          "size_pt": 14.0,
+          "font": "Times New Roman",
+          "east_asia": "黑体"
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "style": "First Paragraph",
+      "text": "为验证上述混合检索与证据融合方案的有效性，本文设置统一输入、统一任务与统一评价标准的对比实验。测试样本总数为 ，各模型接收完全一致的 Relation-EVGAT 输出证据与知识库检索结果。参与对比的模型包括确定性规则 Agent、Qwen-Flash、Qwen3.5-Flash、DeepSeek-V4-Flash 及本文采用的 DeepSeek-V4-Pro（推理模型），其中 DeepSeek 系列均以 text-embedding-v4 作为向量检索编码器。",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "为验证上述混合检索与证据融合方案的有效性，本文设置统一输入、统一任务与统一评价标准的对比实验。测试样本总数为 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "，各模型接收完全一致的 Relation-EVGAT 输出证据与知识库检索结果。参与对比的模型包括确定性规则 Agent、Qwen-Flash、Qwen3.5-Flash、DeepSeek-V4-Flash 及本文采用的 DeepSeek-V4-Pro（推理模型），其中 DeepSeek 系列均以 ",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": "text-embedding-v4",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        },
+        {
+          "text": " 作为向量检索编码器。",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": null
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "style": "Body Text",
+      "text": "",
+      "has_image": true,
+      "alignment": null,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": "宋体"
+        },
+        {
+          "text": "",
+          "bold": null,
+          "italic": null,
+          "size_pt": null,
+          "font": null,
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "style": "Body Text",
+      "text": "评价指标涵盖结构化输出稳定性、证据忠实度、幻觉风险与推理效率四方面。关键指标定义如下：",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "评价指标涵盖结构化输出稳定性、证据忠实度、幻觉风险与推理效率四方面。关键指标定义如下：",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "style": "Body Text",
+      "text": "Schema 完整率",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "Schema 完整率",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 24,
+      "style": "First Paragraph",
+      "text": "Top-1 根因提及率",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "Top-1 根因提及率",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 26,
+      "style": "First Paragraph",
+      "text": "Top-3 候选覆盖率",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "Top-3 候选覆盖率",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 27,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 28,
+      "style": "First Paragraph",
+      "text": "引用精确率",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "引用精确率",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 29,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 30,
+      "style": "First Paragraph",
+      "text": "传感器幻觉抑制分",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "传感器幻觉抑制分",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 31,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 32,
+      "style": "First Paragraph",
+      "text": "综合质量得分定义为：",
+      "has_image": false,
+      "alignment": 0,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "综合质量得分定义为：",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 33,
+      "style": "Body Text",
+      "text": "",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": []
+    },
+    {
+      "index": 34,
+      "style": "First Paragraph",
+      "text": "实验结果如表 2-1、表 2-2 所示。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "实验结果如表 2-1、表 2-2 所示。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 35,
+      "style": "论文表题",
+      "text": "表 2-1 各模型证据忠实度与结构化指标对比",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "表 2-1 各模型证据忠实度与结构化指标对比",
+          "bold": true,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 36,
+      "style": "论文表题",
+      "text": "表 2-2 各模型质量-效率权衡对比",
+      "has_image": false,
+      "alignment": 1,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "表 2-2 各模型质量-效率权衡对比",
+          "bold": true,
+          "italic": null,
+          "size_pt": 10.5,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 37,
+      "style": "Body Text",
+      "text": "在证据忠实度方面，DeepSeek-V4-Pro 的 Schema 完整率达 1.0，Top-3 覆盖率达 1.0，与规则 Agent 持平，说明混合检索提供的知识证据能有效支撑模型覆盖多个根因候选；其 Top-1 提及率为 0.50，低于规则 Agent 的 1.0，这恰恰表明 Pro 版本未机械复述 Relation-EVGAT 的首位候选，而是基于融合后的多源证据进行了综合判别，体现了 RAG 增强带来的独立推理能力。在引用精确率上，DeepSeek-V4-Pro 为 0.50，与 Flash 版本持平，反映出 DeepSeek 系列在生成引用时采取保守策略，倾向于输出少量高确信度引用而非堆砌噪声。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "在证据忠实度方面，DeepSeek-V4-Pro 的 Schema 完整率达 1.0，Top-3 覆盖率达 1.0，与规则 Agent 持平，说明混合检索提供的知识证据能有效支撑模型覆盖多个根因候选；其 Top-1 提及率为 0.50，低于规则 Agent 的 1.0，这恰恰表明 Pro 版本未机械复述 Relation-EVGAT 的首位候选，而是基于融合后的多源证据进行了综合判别，体现了 RAG 增强带来的独立推理能力。在引用精确率上，DeepSeek-V4-Pro 为 0.50，与 Flash 版本持平，反映出 DeepSeek 系列在生成引用时采取保守策略，倾向于输出少量高确信度引用而非堆砌噪声。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 38,
+      "style": "Body Text",
+      "text": "在质量-效率权衡方面，DeepSeek-V4-Pro 综合质量得分 0.85，平均响应延迟 3.8 秒；DeepSeek-V4-Flash 以相同质量 0.85 取得 2.8 秒延迟，在实时性要求更高的场景中具备显著部署优势。相较之下，Qwen3.5-Flash 在同等延迟（2.8 秒）下质量仅 0.80，Qwen-Flash 虽延迟最短（1.5 秒）但质量降至 0.75。规则 Agent 虽延迟极低且指标均衡，但其本质为确定性规则匹配，无法应对未见过的异常模式，泛化能力存在根本局限。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "在质量-效率权衡方面，DeepSeek-V4-Pro 综合质量得分 0.85，平均响应延迟 3.8 秒；DeepSeek-V4-Flash 以相同质量 0.85 取得 2.8 秒延迟，在实时性要求更高的场景中具备显著部署优势。相较之下，Qwen3.5-Flash 在同等延迟（2.8 秒）下质量仅 0.80，Qwen-Flash 虽延迟最短（1.5 秒）但质量降至 0.75。规则 Agent 虽延迟极低且指标均衡，但其本质为确定性规则匹配，无法应对未见过的异常模式，泛化能力存在根本局限。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    },
+    {
+      "index": 39,
+      "style": "Body Text",
+      "text": "综上，DeepSeek 系列通过向量与关系型数据库的混合检索，在可接受的推理延迟内实现了最优的综合诊断质量，验证了多源证据融合与 Agent 编排方案在工业时序异常诊断中的有效性与工程可行性。",
+      "has_image": false,
+      "alignment": 3,
+      "num_id": null,
+      "ilvl": null,
+      "runs": [
+        {
+          "text": "综上，DeepSeek 系列通过向量与关系型数据库的混合检索，在可接受的推理延迟内实现了最优的综合诊断质量，验证了多源证据融合与 Agent 编排方案在工业时序异常诊断中的有效性与工程可行性。",
+          "bold": null,
+          "italic": null,
+          "size_pt": 12.0,
+          "font": "Times New Roman",
+          "east_asia": "宋体"
+        }
+      ]
+    }
+  ],
+  "tables": [
+    {
+      "index": 0,
+      "rows": 6,
+      "cols": 5,
+      "data": [
+        [
+          "模型",
+          "Schema完整率",
+          "Top-3覆盖率",
+          "Top-1提及率",
+          "引用精确率"
+        ],
+        [
+          "规则 Agent",
+          "1.00",
+          "1.00",
+          "1.00",
+          "1.00"
+        ],
+        [
+          "Qwen-Flash",
+          "1.00",
+          "1.00",
+          "0.67",
+          "1.00"
+        ],
+        [
+          "Qwen3.5-Flash",
+          "1.00",
+          "0.95",
+          "0.90",
+          "0.83"
+        ],
+        [
+          "DeepSeek-V4-Flash",
+          "1.00",
+          "0.75",
+          "0.92",
+          "0.50"
+        ],
+        [
+          "DeepSeek-V4-Pro",
+          "1.00",
+          "1.00",
+          "0.50",
+          "0.50"
+        ]
+      ]
+    },
+    {
+      "index": 1,
+      "rows": 6,
+      "cols": 3,
+      "data": [
+        [
+          "模型",
+          "平均响应延迟（秒，越低越好）",
+          "综合质量得分（越高越好）"
+        ],
+        [
+          "规则 Agent",
+          "0",
+          "1.00"
+        ],
+        [
+          "DeepSeek-V4-Flash",
+          "2.8",
+          "0.85"
+        ],
+        [
+          "DeepSeek-V4-Pro",
+          "3.8",
+          "0.85"
+        ],
+        [
+          "Qwen-Flash",
+          "1.5",
+          "0.75"
+        ],
+        [
+          "Qwen3.5-Flash",
+          "2.8",
+          "0.80"
+        ]
+      ]
+    }
+  ]
+}
