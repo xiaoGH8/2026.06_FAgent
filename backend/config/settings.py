@@ -87,13 +87,33 @@ def load_rag_config() -> dict[str, Any]:
 
 
 def load_agent_config() -> dict[str, Any]:
+    """Load the DeepSeek diagnosis configuration."""
     load_env_file()
+    api_key = os.getenv("DIAGNOSIS_AGENT_API_KEY", "")
     return {
-        "llm_provider": os.getenv("LLM_PROVIDER", "rule"),
-        "llm_model": os.getenv("LLM_MODEL", ""),
-        "llm_api_key": os.getenv("LLM_API_KEY", ""),
-        "llm_base_url": os.getenv("LLM_BASE_URL", ""),
-        "reasoning_effort": os.getenv("LLM_REASONING_EFFORT", "high"),
-        "mode": "llm" if os.getenv("LLM_API_KEY") else "rule",
+        "config_name": "DIAGNOSIS_AGENT",
+        "llm_provider": os.getenv("DIAGNOSIS_AGENT_PROVIDER", "rule"),
+        "llm_model": os.getenv("DIAGNOSIS_AGENT_MODEL", ""),
+        "llm_api_key": api_key,
+        "llm_base_url": os.getenv("DIAGNOSIS_AGENT_BASE_URL", ""),
+        "reasoning_effort": os.getenv("DIAGNOSIS_AGENT_REASONING_EFFORT", "high"),
+        "mode": "llm" if api_key else "rule",
     }
 
+
+def load_document_agent_config() -> dict[str, Any]:
+    """Load the PR #6 DashScope/Qwen document-analysis configuration."""
+    load_env_file()
+    api_key = os.getenv("DOCUMENT_AGENT_API_KEY", "")
+    return {
+        "config_name": "DOCUMENT_AGENT",
+        "llm_provider": os.getenv("DOCUMENT_AGENT_PROVIDER", "dashscope"),
+        "llm_model": os.getenv("DOCUMENT_AGENT_MODEL", "qwen-plus"),
+        "llm_api_key": api_key,
+        "llm_base_url": os.getenv(
+            "DOCUMENT_AGENT_BASE_URL",
+            "https://dashscope.aliyuncs.com/compatible-mode/v1",
+        ),
+        "reasoning_effort": "",
+        "mode": "llm" if api_key else "disabled",
+    }

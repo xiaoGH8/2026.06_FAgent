@@ -11,9 +11,6 @@ DEPS = Path(__file__).resolve().parent / ".deps"
 if os.environ.get("FAGENT_USE_LOCAL_DEPS") == "1" and DEPS.exists():
     sys.path.insert(0, str(DEPS))
 
-# ErnieBot 认证配置：优先读环境变量，否则使用默认值
-os.environ.setdefault("ERNIE_API_KEY", "dPiR9tEhhwi9ioLWmFrj1ZFB")
-os.environ.setdefault("ERNIE_SECRET_KEY", "nLYGWiCG7nwt76rq2Jplz7wigQYscYGO")
 
 import json
 import time

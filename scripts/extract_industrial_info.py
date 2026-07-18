@@ -11,6 +11,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from backend.model.factory import ModelFactory
+from backend.config.settings import load_document_agent_config
 
 INFO_EXTRACTION_PROMPT = """你是一个工业文档信息抽取助手。请从以下工业文档文本中，提取关键的工艺参数和缺陷描述信息。
 
@@ -55,7 +56,7 @@ def extract_info(llm: ModelFactory, doc_text: str) -> dict:
 
 def main():
     print("初始化 ModelFactory (qwen-plus)...")
-    llm = ModelFactory()
+    llm = ModelFactory(load_document_agent_config())
     status = llm.status()
     print(f"  状态: {status}")
 

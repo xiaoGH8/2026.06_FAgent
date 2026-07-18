@@ -107,10 +107,10 @@ class KnowledgeStore:
     def _embed(self, texts: list[str]) -> list[list[float]]:
         embedding = self.config.get("embedding", {})
         model = str(embedding.get("model") or os.getenv("EMBEDDING_MODEL") or "text-embedding-v4")
-        api_key = os.getenv("EMBEDDING_API_KEY") or os.getenv("LLM_API_KEY", "")
-        base_url = (os.getenv("EMBEDDING_BASE_URL") or os.getenv("LLM_BASE_URL", "")).rstrip("/")
+        api_key = os.getenv("EMBEDDING_API_KEY") or os.getenv("DOCUMENT_AGENT_API_KEY", "")
+        base_url = (os.getenv("EMBEDDING_BASE_URL") or os.getenv("DOCUMENT_AGENT_BASE_URL", "")).rstrip("/")
         if not api_key or not base_url:
-            raise RuntimeError("embedding API key/base URL is not configured")
+            raise RuntimeError("EMBEDDING_* or DOCUMENT_AGENT_* API key/base URL is not configured")
         payload = json.dumps({"model": model, "input": texts}, ensure_ascii=False).encode("utf-8")
         request = urllib.request.Request(
             f"{base_url}/embeddings",

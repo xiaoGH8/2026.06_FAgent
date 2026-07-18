@@ -142,10 +142,11 @@ class ErnieService:
         ) -> dict[str, Any]:
         """智能问答：结合诊断上下文生成自然语言回答。"""
         from backend.model.factory import ModelFactory
+        from backend.config.settings import load_document_agent_config
 
         user_prompt = _build_context_prompt(question, context or {})
         try:
-            llm = ModelFactory()
+            llm = ModelFactory(load_document_agent_config())
             answer = llm.chat([
                 {"role": "system", "content": _INDUSTRIAL_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
@@ -163,10 +164,11 @@ class ErnieService:
     def extract_industrial_info(self, ocr_text: str) -> dict[str, Any]:
         """从文档文本中抽取工业生产关键信息。"""
         from backend.model.factory import ModelFactory
+        from backend.config.settings import load_document_agent_config
 
         user_prompt = f"以下是工业文档识别结果，请提取关键信息：\n\n{ocr_text[:8000]}"
         try:
-            llm = ModelFactory()
+            llm = ModelFactory(load_document_agent_config())
             raw = llm.chat([
                 {"role": "system", "content": _INFO_EXTRACTION_PROMPT},
                 {"role": "user", "content": user_prompt},
@@ -185,6 +187,7 @@ class ErnieService:
     ) -> dict[str, Any]:
         """跨模态关联分析：将质检文档与传感器异常数据关联。"""
         from backend.model.factory import ModelFactory
+        from backend.config.settings import load_document_agent_config
 
         diagnosis_text = _build_context_prompt("跨模态关联分析", diagnosis_context)
         user_prompt = (
@@ -194,7 +197,7 @@ class ErnieService:
         )
 
         try:
-            llm = ModelFactory()
+            llm = ModelFactory(load_document_agent_config())
             analysis = llm.chat([
                 {"role": "system", "content": _CROSS_MODAL_PROMPT},
                 {"role": "user", "content": user_prompt},

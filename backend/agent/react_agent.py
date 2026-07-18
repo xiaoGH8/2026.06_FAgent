@@ -92,7 +92,7 @@ class RuleDiagnosisAgent:
                 if emit:
                     emit("tool", f"DashScope 调用失败，已回退规则回答：{llm_error}", {"name": "dashscope_chat", "status": "failed"})
         elif should_use_llm:
-            llm_error = "LLM_API_KEY 未配置，已使用规则回答。"
+            llm_error = "DIAGNOSIS_AGENT_API_KEY 未配置，已使用规则回答。"
 
         if emit:
             emit("report", answer, {"status": "completed", "llm_error": llm_error})

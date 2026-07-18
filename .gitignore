@@ -34,3 +34,8 @@ storage/
 
 # 环境变量含密钥，不提交
 .env
+# Local credentials and developer-only settings
+.env.*
+!.env.example
+*pat*密钥*.txt
+.claude/settings.local.json
